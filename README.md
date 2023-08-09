@@ -1,1 +1,4 @@
-# Python_TelegremBot_Gorbunkov
+Проект - телеграмм-бот с функцией календаря
+Горбунков Андрей
+Gorbunkov9
+gorbunkov9@mail.ru
