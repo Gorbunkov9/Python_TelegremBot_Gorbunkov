@@ -1,10 +1,26 @@
+from colorama import Fore, Back, Style
+
+
 def draw_board(board):  # функция выводящая на экран карту игры
-    for i in range(3):  # цикл выводящий между тремя строками списка горизонтальные линии
-        print(' ———' * 3)
-        for j in range(len(board[i])):  # цикл выводящий вертикальные линии и значения внутри окон
-            print('| ' + str(board[i][j]) + ' ', end='')
-        print('|')  # крайние правые вертикальные линии
-    print(' ———' * 3)  # окончательная горизонтальная черта
+    for i in board:
+        print('———————')
+        print('|', end='')
+        for j in i:
+            if j == 'X':
+                print(Fore.RED + 'X' + Style.RESET_ALL + '|', end='')
+            elif j == 'O':
+                print(Fore.GREEN + 'O' + Style.RESET_ALL + '|', end='')
+            elif j == ' ':
+                print(Back. YELLOW + ' ' + Style.RESET_ALL + '|', end='')
+        print()
+    print('———————')
+
+
+
+        #   поставить разделители значений в строке
+        # print('|' + '|'.join(i) + '|')
+        #   поставить разделители строк
+        # print("———————")
 
 
 def ask_move(symbol, board):  # функция проверяющая свободна ли ячейка и выводящая координаты для хода
@@ -55,7 +71,7 @@ def check_win(symbol, board):
     if board[0][0] == symbol and board[1][1] == symbol and board[2][2] == symbol:
         return True
     # проверка по диагонали справа налево
-    if board[0][2] == symbol and board[1][1] == symbol and board[2][1] == symbol:
+    if board[0][2] == symbol and board[1][1] == symbol and board[2][0] == symbol:
         return True
     return False
 
@@ -70,12 +86,13 @@ def tic_tac_toe():
             if check_win(symbol, board):  # проверка на победу
                 print(f'Игрок {symbol} выиграл!')
                 break
-            tie_flag = True  # проверка на ничью
+            tie_flag = False  # проверка на ничью
             for i in board:
                 for j in i:
                     if j == ' ':
-                        tie_flag = False
-            if not tie_flag:
+                        tie_flag = True
+            if tie_flag == False:
+                print('Ничья')
                 break
             symbol = "O" if symbol == "X" else "X"
         restart = input('Сыграем еще? (Да/Нет) ')
