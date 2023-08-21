@@ -15,7 +15,6 @@ def create_note():
 
 def read_note():
     note_name_read = input('Введите название заметки: ')
-    print(os.path.isfile('note_name_read.txt'))
     if os.path.isfile('note_name_read.txt'):
         note_text = open('note_name_read.txt', 'r')
     else:
